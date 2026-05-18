@@ -1,12 +1,19 @@
+const MIN_CONTENT_LENGTH = 10;
+const PREVIEW_WORD_LIMIT = 7;
+
+function isBlank(value) {
+  return !value || value.trim() === "";
+}
+
 function validateNote(title, content) {
   const errors = [];
 
-  if (!title || title.trim() === "") {
+  if (isBlank(title)) {
     errors.push("Title is required.");
   }
 
-  if (!content || content.trim().length < 10) {
-    errors.push("Content must be at least 10 characters long.");
+  if (isBlank(content) || content.trim().length < MIN_CONTENT_LENGTH) {
+    errors.push(`Content must be at least ${MIN_CONTENT_LENGTH} characters long.`);
   }
 
   return {
@@ -18,11 +25,11 @@ function validateNote(title, content) {
 function generatePreview(content) {
   const words = content.trim().split(/\s+/);
 
-  if (words.length <= 7) {
+  if (words.length <= PREVIEW_WORD_LIMIT) {
     return content;
   }
 
-  return words.slice(0, 7).join(" ") + "...";
+  return words.slice(0, PREVIEW_WORD_LIMIT).join(" ") + "...";
 }
 
 module.exports = {
