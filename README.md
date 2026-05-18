@@ -66,7 +66,7 @@ GitHub Actions setup will be added after the backend, frontend, and test scripts
 
 # Test Results placeholder
 
-Test result screenshots will be added after the Red-Green-Refactor testing cycles are completed.
+![Unit Test Results](image.png)
 
 # Deployment placeholder
 
