@@ -1,7 +1,8 @@
-// Stub — will throw until [GREEN] phase
+const store = require("./notesStore");
+const { validateNote } = require("./noteUtils");
 
 function getAll(req, res) {
-  throw new Error("Not implemented");
+  res.json(store.getAll());
 }
 
 function getById(req, res) {
@@ -9,7 +10,15 @@ function getById(req, res) {
 }
 
 function create(req, res) {
-  throw new Error("Not implemented");
+  const { title, content } = req.body;
+
+  const validation = validateNote(title, content);
+  if (!validation.isValid) {
+    return res.status(400).json({ errors: validation.errors });
+  }
+
+  const note = store.create(title, content);
+  res.status(201).json(note);
 }
 
 function update(req, res) {

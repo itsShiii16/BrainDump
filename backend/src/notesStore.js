@@ -1,7 +1,8 @@
-// Stub — will throw until [GREEN] phase
+let notes = [];
+let nextId = 1;
 
 function getAll() {
-  throw new Error("Not implemented");
+  return notes;
 }
 
 function getById(id) {
@@ -9,7 +10,9 @@ function getById(id) {
 }
 
 function create(title, content) {
-  throw new Error("Not implemented");
+  const note = { id: nextId++, title, content };
+  notes.push(note);
+  return note;
 }
 
 function update(id, title, content) {
